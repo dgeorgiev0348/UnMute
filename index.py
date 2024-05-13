@@ -1,5 +1,14 @@
 from flask import Flask
 from flask import render_template
+from sqlalchemy import create_engine
+import os
+from dotenv import load_dotenv 
+
+load_dotenv()
+
+DATABASE_URI = f"mysql+pymysql://root:{os.getenv('DB_PASS')}@unmute-db:3306/unmute"
+
+engine = create_engine(DATABASE_URI)
 
 app = Flask(__name__)
 
