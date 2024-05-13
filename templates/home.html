@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <title>UnMute</title>
+
+    <script>
+        function loadContent(exercises, element) {
+            const templateUrl = "{{ url_for('list') }}";
+            const container = document.getElementById(element);
+
+            fetch(templateUrl)
+                .then(response => response.text())
+                .then(templateString => {
+                    const template = document.createElement('template');
+                    template.innerHTML = templateString;
+
+                    exercises.forEach(exercise => {
+                        const item = template.content.querySelector('template').content.cloneNode(true)
+                        item.querySelector('ul').querySelector('li').querySelector('div').querySelector('a').textContent = exercise.title;
+                        item.querySelector('ul').querySelector('li').querySelector('div').querySelector('a').href = exercise.url
+                        item.querySelector('ul').querySelector('li').querySelector('div').querySelector('p').textContent = exercise.exercise;
+                        container.appendChild(item);
+                    });
+                });
+        }
+    </script>
+
+</head>
+
+<body class="bg-gray-700 h-screen">
+    <nav class="border-gray-200 p-5">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <div class="flex items-center justify-center sticky top-0" id="title">
+                <a href="{{ url_for('main_page') }}" class="font-sans text-6xl font-extrabold text-blue-400 font-outline-2">UnMute</a>
+            </div>
+
+            <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden ml-3 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-flex items-center justify-center" aria-controls="mobile-menu-2" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </button>
+
+            <div class="hidden md:block w-full md:w-auto" id="mobile-menu">
+                <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
+                    <li>
+                        <a href="#" class="text-2xl bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded focus:outline-none" aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="text-2xl text-gray-900 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Profile <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
+                        <div id="dropdownNavbar" class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44">
+                            <ul class="py-1" aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="#" class="text-xl hover:bg-gray-100 text-gray-900 block px-4 py-2">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-xl hover:bg-gray-100 text-gray-900 block px-4 py-2">Settings</a>
+                                </li>
+                            </ul>
+                            <div class="py-1">
+                                <a href="#" class="text-xl hover:bg-gray-100 text-gray-900 block px-4 py-2">Sign out</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="text-2xl text-gray-900 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="p-5">
+        <div class="flex mb-4 border-b border-gray-700 text-center justify-center">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                <li class="me-2" role="presentation">
+                    <button class="text-2xl max-sm:text-base inline-block p-4 border-b-2 rounded-t-lg hover:border-gray-300 hover:text-gray-300" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Level 1</button>
+                </li>
+                <li class="me-2" role="presentation">
+                    <button class="text-2xl max-sm:text-base inline-block p-4 border-b-2 rounded-t-lg hover:border-gray-300 hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Level 2</button>
+                </li>
+                <li class="me-2" role="presentation">
+                    <button class="text-2xl max-sm:text-base inline-block p-4 border-b-2 rounded-t-lg hover:border-gray-300 hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Level 3</button>
+                </li>
+                <li role="presentation">
+                    <button class="text-2xl max-sm:text-base inline-block p-4 border-b-2 rounded-t-lg hover:border-gray-300 hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Level 4</button>
+                </li>
+            </ul>
+        </div>
+
+        <div id="default-tab-content rounded-3xl">
+            <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 1: Get Familiar with the Basics</p>
+                <div id="exercise-list-1"></div>
+                <script id="exercise-template-script"> 
+                    const exercises1 = [
+                        { title: "Exercise 01", exercise: "Picture Perfect", url: "{{ url_for('exercise', title='Exercise 01') }}" }, 
+                        //Match the picture of a signing hand to the corresponding letter. Can you identify the correct ASL handshape for each letter? Multiple choice
+                        { title: "Exercise 02", exercise: "Test Your Sign Memory", url: "{{ url_for('exercise', title='Exercise 02') }}" }, 
+                        //Ready for a memory challenge? Watch a series of ASL signs displayed on screen. Once they disappear, tap the signs in the exact order you saw them. Can you remember the sequence?
+                        { title: "Exercise 03", exercise: "Sign Charades", url: "{{ url_for('exercise', title='Exercise 03') }}" }, 
+                        //Put your observation skills to the test! You'll see a picture of a hand displaying an ASL sign. Can you identify the letter it represents?
+                        { title: "Exercise 04", exercise: "Sign It Like You Mean It", url: "{{ url_for('exercise', title='Exercise 04') }}" } 
+                        //Time to shine! The app will display a random letter. Sign the letter clearly and accurately using the correct handshape. Don't be shy – show us your best ASL!
+                    ];
+
+                    loadContent(exercises1, 'exercise-list-1')
+                </script>
+            </div>
+            <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 2: Building Your Vocabulary</p>
+                <div id="exercise-list-2"></div>
+                <script id="exercise-template-script"> 
+                    const exercises2 = [
+                        { title: "Exercise 05", exercise: "", url: "{{ url_for('exercise', title='Exercise 05') }}" },
+                        { title: "Exercise 06", exercise: "", url: "{{ url_for('exercise', title='Exercise 06') }}" },
+                        { title: "Exercise 07", exercise: "", url: "{{ url_for('exercise', title='Exercise 07') }}" },
+                        { title: "Exercise 08", exercise: "", url: "{{ url_for('exercise', title='Exercise 08') }}" } 
+                    ];
+
+                    loadContent(exercises2, 'exercise-list-2')
+                </script>
+            </div>
+            <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 3: Putting It All Together</p>
+                <div id="exercise-list-3"></div>
+                <script id="exercise-template-script"> 
+                    const exercises3 = [
+                        { title: "Exercise 09", exercise: "", url: "{{ url_for('exercise', title='Exercise 09') }}" },
+                        { title: "Exercise 10", exercise: "", url: "{{ url_for('exercise', title='Exercise 10') }}" },
+                        { title: "Exercise 11", exercise: "", url: "{{ url_for('exercise', title='Exercise 11') }}" },
+                        { title: "Exercise 12", exercise: "", url: "{{ url_for('exercise', title='Exercise 12') }}" } 
+                    ];
+
+                    loadContent(exercises3, 'exercise-list-3')
+                </script>
+            </div>
+            <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 4: Taking the Next Step</p>
+                <div id="exercise-list-4"></div>
+                <script id="exercise-template-script"> 
+                    const exercises4 = [
+                        { title: "Exercise 13", exercise: "", url: "{{ url_for('exercise', title='Exercise 13') }}" },
+                        { title: "Exercise 14", exercise: "", url: "{{ url_for('exercise', title='Exercise 14') }}" },
+                        { title: "Exercise 15", exercise: "", url: "{{ url_for('exercise', title='Exercise 15') }}" },
+                        { title: "Exercise 16", exercise: "", url: "{{ url_for('exercise', title='Exercise 16') }}" } 
+                    ];
+
+                    loadContent(exercises4, 'exercise-list-4')
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <footer class="flex items-center justify-center bg-blue-400 fixed bottom-0 w-screen">
+        <a class="text-lg text-white m-5" href="#">About us</a>
+        <a class="text-lg text-white m-5" href="#">Help and Support</a>
+        <a class="text-lg text-white m-5" href="#">Social</a>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js"></script>
+</body>
