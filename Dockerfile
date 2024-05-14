@@ -11,4 +11,4 @@ EXPOSE 5000
 
 ENV FLASK_APP=index.py
 
-CMD ["flask", "run", "--host", "0.0.0.0"]  # Run the Flask app
+CMD ["flask", "run", "--host", "0.0.0.0"]
