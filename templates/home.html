@@ -94,21 +94,16 @@
 
         <div id="default-tab-content rounded-3xl">
             <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 1: Get Familiar with the Basics</p>
+                <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 1: Get Familiar with the Basic</p>
                 <div id="exercise-list-1"></div>
                 <script id="exercise-template-script"> 
-                    const exercises1 = [
-                        { title: "Exercise 01", exercise: "Picture Perfect", url: "{{ url_for('exercise', title='Exercise 01') }}" }, 
-                        //Match the picture of a signing hand to the corresponding letter. Can you identify the correct ASL handshape for each letter? Multiple choice
-                        { title: "Exercise 02", exercise: "Test Your Sign Memory", url: "{{ url_for('exercise', title='Exercise 02') }}" }, 
-                        //Ready for a memory challenge? Watch a series of ASL signs displayed on screen. Once they disappear, tap the signs in the exact order you saw them. Can you remember the sequence?
-                        { title: "Exercise 03", exercise: "Sign Charades", url: "{{ url_for('exercise', title='Exercise 03') }}" }, 
-                        //Put your observation skills to the test! You'll see a picture of a hand displaying an ASL sign. Can you identify the letter it represents?
-                        { title: "Exercise 04", exercise: "Sign It Like You Mean It", url: "{{ url_for('exercise', title='Exercise 04') }}" } 
-                        //Time to shine! The app will display a random letter. Sign the letter clearly and accurately using the correct handshape. Don't be shy – show us your best ASL!
-                    ];
+                    var e1 = { level1 }
 
-                    loadContent(exercises1, 'exercise-list-1')
+                    level1.forEach(element => {
+                        e1.appendChild({ title: element.title, exercise: element.name, url: "{{ url_for('exercise', title='" + element.title + "') }}" },)
+                    });
+
+                    loadContent(e1, 'exercise-list-1')
                 </script>
             </div>
             <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">

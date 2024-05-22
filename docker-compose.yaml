@@ -4,7 +4,7 @@ services:
   app:
     build: .
     working_dir: /app
-    command: flask run --host 0.0.0.0
+    command: flask run --host 0.0.0.0 --debug
     expose:
       - "5000:5000"
 
@@ -12,5 +12,8 @@ services:
     image: mysql
     ports:
       - "3307:3306"
+    command: --init-file /home/gushter/Documents/unmute/init.sql
+    volumes:
+        - ./init.sql:/home/gushter/Documents/unmute/init.sql
     environment:
       MYSQL_ROOT_PASSWORD: 123
