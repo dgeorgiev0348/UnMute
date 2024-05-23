@@ -2,4 +2,4 @@ unmute-venv
 node_modules
 __pycache__
 .env
-.sql
+init.sql

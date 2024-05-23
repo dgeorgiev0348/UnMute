@@ -18,8 +18,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db.init_app(app)
 
-# https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html
-
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
