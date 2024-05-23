@@ -23,7 +23,7 @@
                         const item = template.content.querySelector('template').content.cloneNode(true)
                         item.querySelector('ul').querySelector('li').querySelector('div').querySelector('a').textContent = exercise.title;
                         item.querySelector('ul').querySelector('li').querySelector('div').querySelector('a').href = exercise.url
-                        item.querySelector('ul').querySelector('li').querySelector('div').querySelector('p').textContent = exercise.exercise;
+                        item.querySelector('ul').querySelector('li').querySelector('div').querySelector('p').textContent = exercise.name;
                         container.appendChild(item);
                     });
                 });
@@ -94,58 +94,39 @@
 
         <div id="default-tab-content rounded-3xl">
             <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 1: Get Familiar with the Basic</p>
+                <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 1: Get Familiar with the Basics</p>
                 <div id="exercise-list-1"></div>
                 <script id="exercise-template-script"> 
-                    var e1 = { level1 }
-
-                    level1.forEach(element => {
-                        e1.appendChild({ title: element.title, exercise: element.name, url: "{{ url_for('exercise', title='" + element.title + "') }}" },)
-                    });
-
-                    loadContent(e1, 'exercise-list-1')
+                    let jsonstr1 = '{{ level1e | safe }}'
+                    let ex1 = JSON.parse(jsonstr1)
+                    loadContent(ex1, "exercise-list-1")
                 </script>
             </div>
             <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                 <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 2: Building Your Vocabulary</p>
                 <div id="exercise-list-2"></div>
                 <script id="exercise-template-script"> 
-                    const exercises2 = [
-                        { title: "Exercise 05", exercise: "", url: "{{ url_for('exercise', title='Exercise 05') }}" },
-                        { title: "Exercise 06", exercise: "", url: "{{ url_for('exercise', title='Exercise 06') }}" },
-                        { title: "Exercise 07", exercise: "", url: "{{ url_for('exercise', title='Exercise 07') }}" },
-                        { title: "Exercise 08", exercise: "", url: "{{ url_for('exercise', title='Exercise 08') }}" } 
-                    ];
-
-                    loadContent(exercises2, 'exercise-list-2')
+                    let jsonstr2 = '{{ level2e | safe }}'
+                    let ex2 = JSON.parse(jsonstr2)
+                    loadContent(ex2, "exercise-list-2")
                 </script>
             </div>
             <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 3: Putting It All Together</p>
                 <div id="exercise-list-3"></div>
                 <script id="exercise-template-script"> 
-                    const exercises3 = [
-                        { title: "Exercise 09", exercise: "", url: "{{ url_for('exercise', title='Exercise 09') }}" },
-                        { title: "Exercise 10", exercise: "", url: "{{ url_for('exercise', title='Exercise 10') }}" },
-                        { title: "Exercise 11", exercise: "", url: "{{ url_for('exercise', title='Exercise 11') }}" },
-                        { title: "Exercise 12", exercise: "", url: "{{ url_for('exercise', title='Exercise 12') }}" } 
-                    ];
-
-                    loadContent(exercises3, 'exercise-list-3')
+                    let jsonstr3 = '{{ level3e | safe }}'
+                    let ex3 = JSON.parse(jsonstr3)
+                    loadContent(ex3, "exercise-list-3")
                 </script>
             </div>
             <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
                 <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 4: Taking the Next Step</p>
                 <div id="exercise-list-4"></div>
                 <script id="exercise-template-script"> 
-                    const exercises4 = [
-                        { title: "Exercise 13", exercise: "", url: "{{ url_for('exercise', title='Exercise 13') }}" },
-                        { title: "Exercise 14", exercise: "", url: "{{ url_for('exercise', title='Exercise 14') }}" },
-                        { title: "Exercise 15", exercise: "", url: "{{ url_for('exercise', title='Exercise 15') }}" },
-                        { title: "Exercise 16", exercise: "", url: "{{ url_for('exercise', title='Exercise 16') }}" } 
-                    ];
-
-                    loadContent(exercises4, 'exercise-list-4')
+                    let jsonstr4 = '{{ level4e | safe }}'
+                    let ex4 = JSON.parse(jsonstr4)
+                    loadContent(ex4, "exercise-list-4")
                 </script>
             </div>
         </div>

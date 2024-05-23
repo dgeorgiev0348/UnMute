@@ -1,8 +1,9 @@
 import os
-from flask import Flask
+from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv 
 from flask import render_template
+import json
 
 load_dotenv()
 
@@ -17,7 +18,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db.init_app(app)
 
-# socks = db.session.execute(db.select(Sock).filter_by(style='knee-high').order_by(Sock.name)).scalars()
 # https://python-adv-web-apps.readthedocs.io/en/latest/flask_db2.html
 
 class User(db.Model):
@@ -34,6 +34,12 @@ class Exercise(db.Model):
     name = db.Column(db.String)
     description = db.Column(db.String)
 
+    def __init__(self, level, title, name, desc):
+        self.level = level
+        self.title = title
+        self.name = name
+        self.description = desc
+
 @app.route("/")
 def main_page():
     return render_template('main.html')
@@ -48,10 +54,7 @@ def register():
 
 @app.route("/home")
 def home():
-    #https://stackoverflow.com/questions/44221256/flask-python-list-to-javascript
-    level1 = db.session.execute(db.select(Exercise).filter_by(level = 1)).scalars()
-
-    return render_template('home.html', level1 = level1)
+    return render_template('home.html', level1e = getExercises(1), level2e = getExercises(2), level3e = getExercises(3), level4e = getExercises(4))
 
 @app.route("/exercise/<title>")
 def exercise(title):
@@ -60,3 +63,13 @@ def exercise(title):
 @app.route("/list_exercises")
 def list():
     return render_template('exercises_list.html')
+
+def getExercises(levelNum):
+    exercises = []
+    ex = db.session.execute(db.select(Exercise).filter_by(level = levelNum)).scalars()
+    
+    for exercise in ex:
+        url = url_for('exercise', title = exercise.title)
+        exercises.append({"title":exercise.title, "name":exercise.name, "url":url})
+
+    return json.dumps(exercises)
