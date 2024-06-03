@@ -52,7 +52,10 @@ def register():
 
 @app.route("/home")
 def home():
-    return render_template('home.html', level1e = getExercises(1), level2e = getExercises(2), level3e = getExercises(3), level4e = getExercises(4))
+    return render_template('home.html', level1e = getExercises(1), 
+                                        level2e = getExercises(2), 
+                                        level3e = getExercises(3), 
+                                        level4e = getExercises(4))
 
 @app.route("/exercise/<title>")
 def exercise(title):
@@ -61,6 +64,10 @@ def exercise(title):
 @app.route("/list_exercises")
 def list():
     return render_template('exercises_list.html')
+
+@app.route("/test")
+def test():
+    return render_template('test.html')
 
 def getExercises(levelNum):
     exercises = []
