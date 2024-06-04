@@ -9,7 +9,7 @@ load_dotenv()
 
 db = SQLAlchemy()
 
-DATABASE_URI = f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@db:3306/{os.getenv('DB')}"
+DATABASE_URI = f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@db-unmute:3306/{os.getenv('DB')}"
 
 app = Flask(__name__)
 
