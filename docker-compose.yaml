@@ -16,7 +16,9 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "123"
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 123
     command: --init-file /app/init.sql
     volumes:
         - ./init.sql:/app/init.sql
