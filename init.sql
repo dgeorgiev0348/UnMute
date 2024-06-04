@@ -1,4 +1,3 @@
-CREATE USER 'root'@'db' IDENTIFIED BY '123';
 CREATE DATABASE IF NOT EXISTS unmute;
 
 USE unmute;
