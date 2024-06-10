@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <title>Register</title>
 </head>
-<body class="bg-gray-700">
+<body class="bg-gray-900">
     <div class="flex items-center justify-center sticky top-0" id="title">
         <h1 class="font-sans text-6xl mt-7 font-extrabold text-blue-400 font-outline-2">UnMute</h1>
     </div>
-    <div class="flex flex-col items-center justify-center px-6 py-8">
-        <div class="w-full rounded-3xl shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-blue-400">
+    <div class="flex flex-col items-center justify-center px-6 py-10">
+        <div class="w-full rounded-3xl shadow border md:mt-0 sm:max-w-md xl:p-0 bg-sky-500 bg-opacity-10 border-blue-400">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-white">
                     Create an account
@@ -37,7 +37,7 @@
                             <label for="terms" class="font-light text-gray-300">I accept the <a class="font-medium hover:underline text-primary-500" href="#">Terms and Conditions</a></label>
                         </div>
                     </div>
-                    <button type="submit" class="w-full rounded-3xl bg-yellow-400 ring-4 ring-yellow-600 font-medium text-sm px-5 py-2 text-center hover:bg-yellow-500">Create an account</button>
+                    <a type="submit" href="{{ url_for('home') }}" class="w-full rounded-3xl bg-yellow-400 ring-4 ring-yellow-600 font-medium text-sm px-5 py-2 text-center hover:bg-yellow-500">Create an account</a>
                     <p class="text-sm font-light text-gray-400">
                         Already have an account? <a href="{{ url_for('login') }}" class="font-medium text-sky-600 hover:underline">Login here</a>
                     </p>

@@ -32,7 +32,7 @@
 
 </head>
 
-<body class="bg-gray-700 h-screen">
+<body class="bg-gray-900 h-screen">
     <nav class="border-gray-200 p-5">
         <div class="container mx-auto flex flex-wrap items-center justify-between">
             <div class="flex items-center justify-center sticky top-0" id="title">
@@ -47,27 +47,21 @@
 
             <div class="hidden md:block w-full md:w-auto" id="mobile-menu">
                 <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
-                    <li>
+                    <!-- <li>
                         <a href="#" class="text-2xl bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded focus:outline-none" aria-current="page">Home</a>
-                    </li>
+                    </li> -->
                     <li>
-                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="text-2xl text-gray-900 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Profile <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="text-2xl hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Profile <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
                         <div id="dropdownNavbar" class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44">
                             <ul class="py-1" aria-labelledby="dropdownLargeButton">
                                 <li>
                                     <a href="#" class="text-xl hover:bg-gray-100 text-gray-900 block px-4 py-2">Dashboard</a>
                                 </li>
-                                <li>
-                                    <a href="#" class="text-xl hover:bg-gray-100 text-gray-900 block px-4 py-2">Settings</a>
-                                </li>
                             </ul>
                             <div class="py-1">
-                                <a href="#" class="text-xl hover:bg-gray-100 text-gray-900 block px-4 py-2">Sign out</a>
+                                <a href="{{ url_for('login') }}" class="text-xl hover:bg-gray-100 text-gray-900 block px-4 py-2">Sign out</a>
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <a href="#" class="text-2xl text-gray-900 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -93,7 +87,7 @@
         </div>
 
         <div id="default-tab-content rounded-3xl">
-            <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="hidden p-4 rounded-3xl bg-sky-500 bg-opacity-10 h-90" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 1: Get Familiar with the Basics</p>
                 <div id="exercise-list-1"></div>
                 <script id="exercise-template-script"> 
@@ -102,7 +96,7 @@
                     loadContent(ex1, "exercise-list-1")
                 </script>
             </div>
-            <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+            <div class="hidden p-4 rounded-3xl bg-sky-500 bg-opacity-10 h-90" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                 <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 2: Building Your Vocabulary</p>
                 <div id="exercise-list-2"></div>
                 <script id="exercise-template-script"> 
@@ -111,7 +105,7 @@
                     loadContent(ex2, "exercise-list-2")
                 </script>
             </div>
-            <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+            <div class="hidden p-4 rounded-3xl bg-sky-500 bg-opacity-10 h-90" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 3: Putting It All Together</p>
                 <div id="exercise-list-3"></div>
                 <script id="exercise-template-script"> 
@@ -120,7 +114,7 @@
                     loadContent(ex3, "exercise-list-3")
                 </script>
             </div>
-            <div class="hidden p-4 rounded-3xl bg-gray-800 h-90" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+            <div class="hidden p-4 rounded-3xl bg-sky-500 bg-opacity-10 h-90" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
                 <p class="text-gray-400 my-5 ml-2 text-3xl max-sm:text-xl">Level 4: Taking the Next Step</p>
                 <div id="exercise-list-4"></div>
                 <script id="exercise-template-script"> 
