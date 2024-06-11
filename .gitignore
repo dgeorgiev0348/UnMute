@@ -2,3 +2,9 @@ unmute-venv
 node_modules
 __pycache__
 .env
+dataset
+gesture_training.ipynb
+test.ipynb
+Tensorflow
+gesture-env
+exported_model
