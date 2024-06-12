@@ -20,13 +20,10 @@ jaxlib==0.4.28
 Jinja2==3.1.4
 kiwisolver==1.4.5
 MarkupSafe==2.1.5
-matplotlib==3.9.0
 ml-dtypes==0.4.0
-numpy==1.26.4
 opt-einsum==3.3.0
 packaging==24.0
 pillow==10.3.0
-protobuf==4.25.3
 pycparser==2.22
 PyMySQL==1.1.0
 pyparsing==3.1.2
