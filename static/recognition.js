@@ -8,6 +8,12 @@ const videoHeight = "360px";
 const videoWidth = "480px";
 let alerted = false
 
+let letters = ["A", "B", "C", "L", "W"]
+
+let desc = document.getElementById("desc")
+const letter = letters[Math.floor(Math.random() * 5)]
+desc.textContent = "Show the sign for the letter " + letter
+
 const createGestureRecognizer = async () => {
     const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm");
     gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
@@ -93,7 +99,7 @@ async function predictWebcam() {
         gestureOutput.innerText = `GestureRecognizer: ${categoryName},`
         
         setTimeout(() => {
-            if (categoryName === "L" && !alerted) {
+            if (categoryName === letter && !alerted) {
                 const modalEl = document.getElementById('info-popup');
                 modalEl.classList.remove("hidden");
                 alerted = true
